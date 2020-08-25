@@ -19,15 +19,15 @@ centre_size_factors <- as.logical(ctx$op.value('centre_size_factors'))
 count_matrix <- ctx$as.matrix()
 
 logcounts <- normalizeCounts(count_matrix,
-                             librarySizeFactors(sce),
+                             librarySizeFactors(count_matrix),
                              centre_size_factors = centre_size_factors,
                              return_log = logged_values)
 
 output <- logcounts %>%
-  as.data.frame() %>%
-  mutate(.ri = 0:(n()-1)) %>%
+  as_tibble() %>%
+  dplyr::mutate(.ri = 0:(n()-1)) %>%
   gather(key = "column", value = "logcounts", -.ri) %>%
-  mutate(.ci = as.integer(stringr::str_remove(column, "V")) - 1) %>%
+  dplyr::mutate(.ci = as.integer(stringr::str_remove(column, "V")) - 1) %>%
   select(-column)
 
 ctx$addNamespace(output) %>%
