@@ -1,10 +1,21 @@
 {
-  "name": "Median",
-  "description": "Return the medium value of a cell",
-  "tags": ["basic statistics"],
+  "name": "scRNA-seq normalisation",
+  "description": "Normalisation of scRNA-seq count data",
+  "tags": ["RNA-seq", "scRNA-seq", "single-cell", "genomics"],
   "authors": ["tercen"],
-  "urls": ["https://github.com/tercen/template_operator"],
-  "properties": []
+  "urls": ["https://github.com/tercen/scRNAseq_normalisation_operator"],
+  "properties": [
+    {
+      "kind": "BooleanProperty",
+      "name": "logged_values",
+      "defaultValue": true,
+      "description": "A logical value indicating whether the counts should be logged as well as library-size normalized."
+    },
+    {
+    "kind": "BooleanProperty",
+    "name": "centre_size_factors",
+    "defaultValue": true,
+    "description": "A logical value indicating whether the calculated size factors should be centered."
+  }
+  ]
 }
-
-
