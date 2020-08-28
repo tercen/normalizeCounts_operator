@@ -27,7 +27,7 @@ output <- logcounts %>%
   as_tibble() %>%
   dplyr::mutate(.ri = 0:(n()-1)) %>%
   gather(key = "column", value = "logcounts", -.ri) %>%
-  dplyr::mutate(.ci = as.integer(stringr::str_remove(column, "V")) - 1) %>%
+  dplyr::mutate(.ci = as.integer(as.integer(stringr::str_remove(column, "V")) - 1)) %>%
   select(-column)
 
 ctx$addNamespace(output) %>%
