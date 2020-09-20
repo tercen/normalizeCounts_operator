@@ -5,8 +5,8 @@ library(tidyr)
 library(dplyr)
 library(tercen)
 
-options("tercen.workflowId" = "dcdd9d2d6d74569ea6fd766d3a01c274")
-options("tercen.stepId"     = "f0126fda-e4ba-4e13-8ae2-de391d96a48a")
+options("tercen.workflowId" = "4be77e8b64b21d32888498101300ee68")
+options("tercen.stepId"     = "60558ed3-510e-4251-a7d2-409b6ada163b")
 
 getOption("tercen.workflowId")
 getOption("tercen.stepId")

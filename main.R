@@ -3,6 +3,7 @@ library(tidyr)
 library(dplyr)
 library(tercen)
 
+
 (ctx = tercenCtx())
 
 logged_values <- as.logical(ctx$op.value('logged_values'))
