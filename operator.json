@@ -1,5 +1,5 @@
 {
-  "name": "scRNA-seq normalisation",
+  "name": "normalizeCounts",
   "description": "Normalisation of scRNA-seq count data",
   "tags": ["RNA-seq", "scRNA-seq", "single-cell", "genomics"],
   "authors": ["tercen"],
