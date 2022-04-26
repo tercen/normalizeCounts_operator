@@ -1,10 +1,11 @@
+library(scRNAseq)
+library(SingleCellExperiment)
 library(scater)
 library(tidyr)
 library(dplyr)
 library(tercen)
 
-
-(ctx = tercenCtx())
+ctx <- tercenCtx()
 
 logged_values <- as.logical(ctx$op.value('logged_values'))
 centre_size_factors <- as.logical(ctx$op.value('centre_size_factors'))
