@@ -1,7 +1,7 @@
 {
   "name": "Normalize scRNA-seq counts",
   "description": "Normalisation of scRNA-seq count data",
-  "tags": ["RNA-seq", "scRNA-seq", "single-cell", "genomics"],
+  "tags": ["omics", "scRNA-seq"],
   "authors": ["tercen"],
   "urls": ["https://github.com/tercen/normalizeCounts_operator"],
   "properties": [
