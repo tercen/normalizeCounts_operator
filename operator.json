@@ -7,13 +7,13 @@
   "properties": [
     {
       "kind": "BooleanProperty",
-      "name": "logged_values",
+      "name": "log",
       "defaultValue": true,
       "description": "A logical value indicating whether the counts should be logged as well as library-size normalized."
     },
     {
     "kind": "BooleanProperty",
-    "name": "centre_size_factors",
+    "name": "centre.size.factors",
     "defaultValue": true,
     "description": "A logical value indicating whether the calculated size factors should be centered."
   }

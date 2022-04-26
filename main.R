@@ -1,4 +1,3 @@
-library(scRNAseq)
 library(SingleCellExperiment)
 library(scater)
 library(tidyr)
@@ -7,20 +6,22 @@ library(tercen)
 
 ctx <- tercenCtx()
 
-logged_values <- as.logical(ctx$op.value('logged_values'))
-centre_size_factors <- as.logical(ctx$op.value('centre_size_factors'))
+log.par <- ctx$op.value('log', as.logical, TRUE)
+center.size.factors <- ctx$op.value('center.size.factors', as.logical, TRUE)
 
 count_matrix <- ctx$as.matrix()
 
-logcounts <- normalizeCounts(count_matrix,
-                             librarySizeFactors(count_matrix),
-                             centre_size_factors = centre_size_factors,
-                             return_log = logged_values)
+logcounts <- scater::normalizeCounts(
+  count_matrix,
+  librarySizeFactors(count_matrix),
+  log = log.par,
+  center.size.factors = center.size.factors
+)
 
 output <- logcounts %>%
   as_tibble() %>%
-  dplyr::mutate(.ri = 0:(n()-1)) %>%
-  gather(key = "column", value = "logcounts", -.ri) %>%
+  dplyr::mutate(.ri = 0:(n() - 1)) %>%
+  gather(key = "column", value = "normalised_counts", -.ri) %>%
   dplyr::mutate(.ci = as.integer(as.integer(stringr::str_remove(column, "V")) - 1)) %>%
   select(-column)
 

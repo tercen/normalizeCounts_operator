@@ -1,0 +1,10 @@
+{
+  "kind": "OperatorUnitTest",
+  "name": "test",
+  "namespace": "ds0",
+  "inputDataUri": "example_count.csv",
+  "outputDataUri": ["table1.csv", "table2.csv", "table3.csv"],
+  "columns": ["sample", "barcode"],
+  "rows": ["gene"],
+  "yAxis": "count"
+}
