@@ -1,4 +1,4 @@
-# scRNA-seq normalisation operator
+# scRNA-seq normalisation
 
 ##### Description
 
@@ -8,24 +8,26 @@
 
 Input projection|.
 ---|---
-`y-axis`        | numeric, count data, per cell 
-`column`        | character, cell ID
-`row`           | character, gene ID
+`y-axis`        | numeric, count data
+`columns`        | character, cell ID
+`rows`           | character, gene ID
 
-| Input parameters | Description                                                                              |
-| -----------------| ---------------------------------------------------------------------------------------- |
-| `logged_values`  | Logical, whether the counts should be logged as well as library-size normalised (default = TRUE) |
-| `centre_size_factors`  | Logical, whether the calculated size factors should be centered (default = TRUE) |
+Input parameters | Description                                                               
+---|---
+`logged_values`  | Logical, whether the counts should be logged as well as library-size normalised (default = TRUE)
+`centre_size_factors`  | Logical, whether the calculated size factors should be centered (default = TRUE)
 
 Output relations|.
 ---|---
-`logcounts` | numeric, normalised count data, per cell 
+`value` | numeric, normalised count data, per cell 
 
 
 ##### Details
 
-The operator uses the normalisation worklfow described in the corresponding chapter of the ["Orchestrating Single-Cell Analysis"](https://osca.bioconductor.org/normalization.html) book. For this it uses the _scRNAseq_ BioConductor package.
+The operator uses the `Seurat` R package and the preprocessing workflow described in the ["package website"](https://satijalab.org/seurat/).
 
 ##### References
 
-Amezquita, et. al. ["Orchestrating single-cell analysis with BioConductor"](https://www.nature.com/articles/s41592-019-0654-x), Nature Methods (2019)
+> Hao, Y., Hao, S., Andersen-Nissen, E., Mauck, W. M., Zheng, S., Butler, A., ... & Satija, R. (2021). Integrated analysis of multimodal single-cell data. Cell, 184(13), 3573-3587.
+
+[Link to Seurat reference](https://doi.org/10.1016/j.cell.2021.04.048)

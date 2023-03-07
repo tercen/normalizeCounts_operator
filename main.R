@@ -1,29 +1,30 @@
-library(SingleCellExperiment)
-library(scater)
-library(tidyr)
-library(dplyr)
-library(tercen)
+suppressPackageStartupMessages(expr = {
+  library(Seurat)
+  library(tidyr)
+  library(dplyr)
+  library(tercen)
+})
 
-ctx <- tercenCtx()
+source("./utils.R")
 
-log.par <- ctx$op.value('log', as.logical, TRUE)
-center.size.factors <- ctx$op.value('center.size.factors', as.logical, TRUE)
+ctx = tercenCtx()
 
-count_matrix <- ctx$as.matrix()
+obj <- as_Seurat(ctx)
 
-logcounts <- scater::normalizeCounts(
-  count_matrix,
-  librarySizeFactors(count_matrix),
-  log = log.par,
-  center.size.factors = center.size.factors
+normalization.method <- ctx$op.value("normalization.method", as.character, "LogNormalize")
+scale.factor <- ctx$op.value("scale.factor", as.double, 10000)
+
+obj <- NormalizeData(
+  obj,
+  normalization.method = normalization.method,
+  scale.factor = scale.factor,
+  verbose = FALSE
 )
 
-output <- logcounts %>%
+obj %>%
+  seurat_to_tercen() %>%
   as_tibble() %>%
-  dplyr::mutate(.ri = 0:(n() - 1)) %>%
-  gather(key = "column", value = "normalised_counts", -.ri) %>%
-  dplyr::mutate(.ci = as.integer(as.integer(stringr::str_remove(column, "V")) - 1)) %>%
-  select(-column)
-
-ctx$addNamespace(output) %>%
+  rename(.ci = j, .ri = i, value = x) %>%
+  mutate(.ci = .ci - 1L, .ri = .ri - 1L) %>%
+  ctx$addNamespace() %>%
   ctx$save()

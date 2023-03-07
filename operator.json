@@ -1,21 +1,22 @@
 {
-  "name": "Normalize scRNA-seq counts",
+  "name": "scRNAseq Normalisation",
   "description": "Normalisation of scRNA-seq count data",
-  "tags": ["omics", "scRNA-seq"],
+  "tags": ["omics", "scRNAseq", "data preprocessing"],
   "authors": ["tercen"],
-  "urls": ["https://github.com/tercen/normalizeCounts_operator"],
+  "urls": ["https://github.com/tercen/scRNAseq_normalize_operator"],
   "properties": [
     {
-      "kind": "BooleanProperty",
-      "name": "log",
-      "defaultValue": true,
-      "description": "A logical value indicating whether the counts should be logged as well as library-size normalized."
+      "kind": "EnumeratedProperty",
+      "name": "normalization.method",
+      "defaultValue": "LogNormalize",
+      "values": ["LogNormalize", "CLR", "RC"],
+      "description": "Method for normalization. LogNormalize: Feature counts for each cell are divided by the total counts for that cell and multiplied by the scale.factor. This is then natural-log transformed using log1p. CLR: Applies a centered log ratio transformation. RC: Relative counts. Feature counts for each cell are divided by the total counts for that cell and multiplied by the scale.factor. No log-transformation is applied."
     },
     {
-    "kind": "BooleanProperty",
-    "name": "centre.size.factors",
-    "defaultValue": true,
-    "description": "A logical value indicating whether the calculated size factors should be centered."
+    "kind": "DoubleProperty",
+    "name": "scale.factor",
+    "defaultValue": 10000,
+    "description": "Sets the scale factor for cell-level normalization."
   }
   ]
 }
