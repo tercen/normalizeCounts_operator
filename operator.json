@@ -1,6 +1,6 @@
 {
   "name": "scRNAseq Normalisation",
-  "description": "Normalisation of scRNA-seq count data",
+  "description": "Normalises single-cell RNA sequencing data.",
   "tags": [
     "omics",
     "sc-RNA-seq",
